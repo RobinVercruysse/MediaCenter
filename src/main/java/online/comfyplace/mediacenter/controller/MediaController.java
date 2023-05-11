@@ -1,7 +1,6 @@
 package online.comfyplace.mediacenter.controller;
 
 import online.comfyplace.mediacenter.model.Media;
-import online.comfyplace.mediacenter.model.Movie;
 import online.comfyplace.mediacenter.repository.MediaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class MediaController {
@@ -17,9 +17,9 @@ public class MediaController {
     private MediaRepository mediaRepository;
 
     @GetMapping("/media")
-    public ResponseEntity<List<? extends Media>> getMedia() {
+    public ResponseEntity<Map<Class<? extends Media>, List<? extends Media>>> getMedia() {
         try {
-            return ResponseEntity.ok(mediaRepository.getMedia().get(Movie.class));
+            return ResponseEntity.ok(mediaRepository.getMedia());
         } catch (IOException e) {
             // TODO logging
             e.printStackTrace();
