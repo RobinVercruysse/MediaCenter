@@ -106,7 +106,7 @@ public class MediaRepository {
         if (episodeFile != null) {
             try {
                 var episodeNumber = Integer.parseInt(FilenameUtils.getBaseName(episodeDir.getName()));
-                return new Episode(episodeNumber);
+                return new Episode(episodeNumber, episodeFile.getAbsolutePath());
             } catch (NumberFormatException e) {
                 return null;
             }
